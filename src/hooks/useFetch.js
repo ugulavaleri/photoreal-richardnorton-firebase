@@ -5,15 +5,27 @@ import { db } from "../firebase";
 
 export const UseFetch = () => {
     const [topics, setTopics] = useState([]);
+    const [wholeList, setWholeList] = useState([]);
+    const [isLoading, setLoading] = useState(false);
+    const [filtered, setFilter] = useState(wholeList);
+
     useEffect(() => {
+        setLoading(false);
         const fetchData = async () => {
             try {
                 onSnapshot(collection(db, "users-post"), (doc) => {
-                    let list = [];
-                    doc.docs.forEach((d) => {
-                        list.push({ id: d.id, ...d.data() });
+                    let displayList = [];
+                    let entireList = [];
+                    doc.docs.forEach((d, i) => {
+                        if (i < 8) {
+                            displayList.push({ id: d.id, ...d.data() });
+                        }
+                        entireList.push({ id: d.id, ...d.data() });
                     });
-                    setTopics(list);
+                    setWholeList(entireList);
+                    setFilter(entireList);
+                    setTopics(displayList);
+                    setLoading(true);
                 });
             } catch (error) {
                 console.log(error);
@@ -22,5 +34,5 @@ export const UseFetch = () => {
         fetchData();
     }, []);
 
-    return topics;
+    return { topics, isLoading, wholeList, setWholeList, setFilter, filtered };
 };

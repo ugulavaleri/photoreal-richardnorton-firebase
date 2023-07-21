@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { GlobalContext } from "../../context/globalContext";
+import UseSpinner from "../../hooks/useSpinner";
 
 function Topic({ topic }) {
     // to convert html content into text.

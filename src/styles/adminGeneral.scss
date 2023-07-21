@@ -1,0 +1,68 @@
+.adminGeneral {
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .innerAdminGeneral {
+        max-width: 1000px;
+        width: 100%;
+        min-height: 695px;
+        ul {
+            max-height: 60vh;
+            overflow-y: scroll;
+            .entireList {
+                border-bottom: 1px solid lightgray;
+                padding: 10px 5px;
+                margin-bottom: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                gap: 50px;
+                position: relative;
+
+                .removeButton {
+                    button {
+                        z-index: 100;
+                        width: 40px;
+                        height: 40px;
+                        font-weight: 700;
+                        border-radius: 10px;
+                        border: 1px solid black;
+                        transition: background-color 0.2s;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: red;
+                            color: #fff;
+                            border: none;
+                        }
+                    }
+                }
+                .imageWrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 20px;
+                }
+                img {
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+    input {
+        margin-bottom: 30px;
+        width: 100%;
+        height: 50px;
+        font-size: 17px;
+        padding-left: 14px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid black;
+    }
+}

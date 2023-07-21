@@ -2,7 +2,7 @@ import { useReducer, useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { reducer } from "./useReducer";
+import { reducer } from "./useAddPostReducer";
 
 // fetch custom hook
 export const useAddPost = () => {
