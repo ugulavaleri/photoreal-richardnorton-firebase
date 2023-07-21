@@ -21,15 +21,15 @@ function Admin() {
     return (
         <div className="adminContainer">
             <div className="navBar">
-                <h1>{activeNavItem}</h1>
+                <h1>Admin Panel</h1>
                 <nav>
                     <ul>
-                        {/* <li>
+                        <li>
                             <Link
-                                to={"general"}
-                                onClick={() => handleActiveAdminNav("general")}
+                                to={"/admin"}
+                                onClick={() => handleActiveAdminNav("admin")}
                                 className={
-                                    activeNavItem === "general"
+                                    activeNavItem === "admin"
                                         ? "active"
                                         : "blackColor"
                                 }
@@ -44,7 +44,7 @@ function Admin() {
                                 />
                                 General
                             </Link>
-                        </li> */}
+                        </li>
                         <li>
                             <Link
                                 to={"post"}

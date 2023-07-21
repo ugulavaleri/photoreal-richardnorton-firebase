@@ -1,16 +1,18 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import noProfile from "../../images/noimage.png";
 import { useAddPost } from "../../hooks/useAddPost";
+import UseSpinner from "../../hooks/useSpinner";
 
 function Addpost() {
     // global reducer
     // every dispach method has proper type name.
     const { state, dispatch, handleSubmit, setValue, value } = useAddPost();
-    const fileInputRef = useRef(null);
-    const handleUpload = () => {
-        fileInputRef.current.click();
+
+    const postInputRef = useRef(null);
+    const handleUploadImage = () => {
+        state.file === "" && postInputRef.current.click();
     };
 
     return (
@@ -28,29 +30,6 @@ function Addpost() {
                         }
                         value={state.author}
                     />
-                    <div>
-                        <img
-                            src={
-                                state.file
-                                    ? URL.createObjectURL(state.file)
-                                    : noProfile
-                            }
-                            onClick={handleUpload}
-                        />
-                        <input
-                            type="file"
-                            onChange={(e) =>
-                                dispatch({
-                                    type: "setFile",
-                                    payload: e.target.files[0],
-                                })
-                            }
-                            style={{ display: "none" }}
-                            ref={fileInputRef}
-                        />
-                    </div>
-                </div>
-                <div className="PostTextIntro">
                     <input
                         type="text"
                         placeholder="headline.."
@@ -77,6 +56,19 @@ function Addpost() {
                         <option value="Branding">Branding</option>
                     </select>
                 </div>
+                <div className="shortDescriptionDiv">
+                    <input
+                        type="text"
+                        placeholder="short description.."
+                        value={state.shortDesc}
+                        onChange={(e) =>
+                            dispatch({
+                                type: "setShortDesc",
+                                payload: e.target.value,
+                            })
+                        }
+                    />
+                </div>
                 <div className="postText">
                     <ReactQuill
                         theme="snow"
@@ -84,7 +76,39 @@ function Addpost() {
                         onChange={setValue}
                     />
                 </div>
+                <div className="PostTextIntro">
+                    <div>
+                        <img
+                            src={
+                                state.file
+                                    ? URL.createObjectURL(state.file)
+                                    : noProfile
+                            }
+                            onClick={handleUploadImage}
+                        />
+                        <input
+                            type="file"
+                            onChange={(e) =>
+                                dispatch({
+                                    type: "setFile",
+                                    payload: e.target.files[0],
+                                })
+                            }
+                            style={{ display: "none" }}
+                            ref={postInputRef}
+                        />
+                        <span>Upload Image</span>
+                    </div>
+                </div>
                 <div className="submitBtn">
+                    {state.successfulyUploaded && (
+                        <span className="uploadMessage">
+                            Post added Successfully!
+                        </span>
+                    )}
+                    {state.percentage < 100 && state.percentage !== null && (
+                        <UseSpinner />
+                    )}
                     <button
                         onClick={handleSubmit}
                         disabled={

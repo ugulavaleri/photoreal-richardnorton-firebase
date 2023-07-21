@@ -4,7 +4,7 @@ import { GlobalContext } from "../../context/globalContext";
 
 function Topic({ topic }) {
     // to convert html content into text.
-    const editorText = topic.desc;
+    const editorText = topic.shortDesc;
     const { setCurrentPostId } = useContext(GlobalContext);
     const navigate = useNavigate(null);
 
@@ -16,7 +16,7 @@ function Topic({ topic }) {
     return (
         <div className="topicWrapper" onClick={handleNavigateCurrentPost}>
             <div className="imagePart">
-                <img src={topic.imageURL} />
+                <img src={topic.postImageURL} />
                 <span>{topic.category.toUpperCase()}</span>
             </div>
             <div className="textPart">

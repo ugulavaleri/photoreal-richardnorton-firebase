@@ -1,11 +1,11 @@
-import Header from "./header";
 import TopicsPage from "./topics";
 import Footer from "./footer";
+import MainPage from "./mainPage";
 
 function Home() {
     return (
         <div className="container">
-            <Header />
+            <MainPage />
             <TopicsPage />
             <Footer />
         </div>

@@ -2,48 +2,19 @@ import { useReducer, useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-const reducer = (state, action) => {
-    switch (action.type) {
-        case "updatePercentage":
-            return { ...state, percentage: action.payload };
-        case "setImageURL":
-            return { ...state, image: action.payload };
-        case "setHeadline":
-            return { ...state, headline: action.payload };
-        case "setCategory":
-            return { ...state, category: action.payload };
-        case "setFile":
-            return { ...state, file: action.payload };
-        case "setTextarea":
-            return { ...state, textarea: action.payload };
-        case "setAuthor":
-            return { ...state, author: action.payload };
-        case "clean":
-            return {
-                author: "",
-                textarea: "",
-                percentage: null,
-                headline: "",
-                category: "Adventure",
-                image: "",
-                file: "",
-            };
-        default:
-            return state;
-    }
-};
+import { reducer } from "./useReducer";
 
 // fetch custom hook
 export const useAddPost = () => {
     const [value, setValue] = useState("");
     const [state, dispatch] = useReducer(reducer, {
         author: "",
-        textarea: "",
+        shortDesc: "",
         percentage: null,
         headline: "",
         category: "Adventure",
-        image: "",
+        postImage: "",
+        profileImage: "",
         file: "",
     });
 
@@ -59,6 +30,7 @@ export const useAddPost = () => {
     // uploads an image into firebase storage.
     useEffect(() => {
         const upload = () => {
+            // Because it doesn't overwrite the name of an existing image
             const uniqueImageName = new Date().getTime() + state.file.name;
 
             const storageRef = ref(storage, uniqueImageName);
@@ -70,7 +42,6 @@ export const useAddPost = () => {
                     const progress =
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log("Upload is " + progress + "% done");
-                    // setPercentage(progress);
                     dispatch({ type: "updatePercentage", payload: progress });
                     switch (snapshot.state) {
                         case "paused":
@@ -89,9 +60,8 @@ export const useAddPost = () => {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(
                         (downloadURL) => {
-                            // setImage(downloadURL);
                             dispatch({
-                                type: "setImageURL",
+                                type: "setPostImageURL",
                                 payload: downloadURL,
                             });
                         }
@@ -115,12 +85,15 @@ export const useAddPost = () => {
                 await addDoc(collection(db, "users-post"), {
                     author: state.author,
                     headline: state.headline,
+                    shortDesc: state.shortDesc,
                     category: state.category,
-                    imageURL: state.image,
-                    desc: value,
+                    postImageURL: state.postImage,
+                    entireBlog: value,
                     time: formattedToday,
                 });
                 setValue("");
+
+                // it cleans and also turns of submit message
                 dispatch({ type: "clean" });
             } else {
                 window.alert("you must fill all the gap and image");
@@ -136,6 +109,5 @@ export const useAddPost = () => {
         state,
         dispatch,
         handleSubmit,
-        formattedToday,
     };
 };

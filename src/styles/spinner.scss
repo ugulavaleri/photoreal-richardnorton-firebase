@@ -1,0 +1,18 @@
+.spinnerCircleContainer {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 5px solid black;
+    border-left-color: transparent;
+    animation: infinite 0.5s linear;
+    animation-name: spinner;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

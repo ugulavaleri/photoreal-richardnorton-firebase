@@ -18,8 +18,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/currentpost" element={<Currentpost />} />
                 <Route path="/admin" element={<Admin />}>
-                    {/* <Route path="" element={<Generalpage />} /> */}
-                    {/* <Route path="general" element={<Generalpage />} /> */}
+                    <Route index element={<Generalpage />} />
                     <Route path="post" element={<Addpost />} />
                     <Route path="slider" element={<Addslider />} />
                 </Route>
