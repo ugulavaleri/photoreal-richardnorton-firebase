@@ -5,8 +5,6 @@ import "../../styles/admin.scss";
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import Addpost from "../adminpanel/addpost";
-// import AdminNavigation from "./adminNavigation";
 
 function Admin() {
     const [activeNavItem, setActiveNavItem] = useState("admin");

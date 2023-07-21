@@ -5,12 +5,8 @@ import { GlobalContext } from "../../context/globalContext";
 function Topic({ topic }) {
     // to convert html content into text.
     const editorText = topic.desc;
-
-    const { currentPostId, setCurrentPostId } = useContext(GlobalContext);
-
+    const { setCurrentPostId } = useContext(GlobalContext);
     const navigate = useNavigate(null);
-
-    console.log(topic);
 
     const handleNavigateCurrentPost = () => {
         setCurrentPostId(topic.id);

@@ -14,9 +14,8 @@ function Currentpost() {
 
             if (docSnap.exists()) {
                 setCurrent(docSnap.data());
-                console.log("Document data:", docSnap.data());
             } else {
-                console.log("No such document!");
+                window.alert("something Wents Wrong");
             }
         };
         currentPostId && getCurrentPost();
@@ -26,6 +25,9 @@ function Currentpost() {
         <div>
             <div>
                 <h1>{current.id}</h1>
+            </div>
+            <div>
+                <h1>{current.headline}</h1>
             </div>
             <div>
                 <img src={current.imageURL} />
