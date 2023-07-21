@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles/RESPONSIVE.scss";
+import "./App.css";
+import Home from "./components/Home/home";
+import { Routes, Route } from "react-router-dom";
+import Notfound from "./components/notFound/notfound";
+import Admin from "./components/adminpanel/admin";
+import Addpost from "./components/adminpanel/addpost";
+import Addslider from "./components/adminpanel/addslider";
+// import AdminNavigation from "./components/adminNavigation";
+import Generalpage from "./components/adminpanel/generalpage";
+import { GlobalContextProvider } from "./context/globalContext";
+import Currentpost from "./components/currentpost/currentpost";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <GlobalContextProvider>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/currentpost" element={<Currentpost />} />
+                <Route path="/admin" element={<Admin />}>
+                    {/* <Route path="" element={<Generalpage />} /> */}
+                    {/* <Route path="general" element={<Generalpage />} /> */}
+                    <Route path="post" element={<Addpost />} />
+                    <Route path="slider" element={<Addslider />} />
+                </Route>
+                <Route path="*" element={<Notfound />} />
+            </Routes>
+        </GlobalContextProvider>
+    );
 }
 
 export default App;

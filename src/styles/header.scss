@@ -1,0 +1,95 @@
+.headerContainer {
+    min-height: 75vh;
+
+    background-image: url("../images/bgImage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+
+    header {
+        padding: 30px 20px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #f8f9fa;
+        h2 {
+            font-size: 23px;
+        }
+        .innerHeader {
+            max-width: 90%;
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .pageNav,
+        .socialNetworkNav {
+            border-right: 1px solid #fff;
+            padding-right: 25px;
+        }
+
+        .headerRightPannel {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            ul {
+                list-style: none;
+                display: flex;
+
+                font-size: 15px;
+                gap: 20px;
+                align-items: center;
+            }
+            img {
+                width: 20px;
+            }
+        }
+    }
+}
+
+.SliderText {
+    color: #fff;
+    position: absolute;
+    bottom: 20%;
+    left: 50px;
+    .category {
+        font-size: 13px;
+        padding: 7px 12px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    .sliderName {
+        font-size: 36px;
+        max-width: 530px;
+        width: 100%;
+        line-height: normal;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        font-family: "Lora", serif;
+    }
+    .postDescriptionDiv {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        .postAddTime {
+            color: #e5e5e5;
+            &::after {
+                content: "";
+                display: inline-block;
+                width: 30px;
+                height: 1px;
+                background-color: #e5e5e5;
+                margin-left: 20px;
+                vertical-align: middle;
+            }
+        }
+        .postDescription {
+            max-width: 420px;
+            width: 100%;
+            font-size: 13px;
+            line-height: 20px;
+        }
+    }
+}

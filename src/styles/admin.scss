@@ -1,0 +1,131 @@
+.adminContainer {
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    ul {
+        list-style: none;
+        li {
+            margin-bottom: 20px;
+            cursor: pointer;
+            a {
+                display: flex;
+                align-items: center;
+
+                text-decoration: none;
+
+                gap: 15px;
+                font-size: 20px;
+                padding: 13px;
+                border-radius: 10px;
+            }
+        }
+    }
+    .navBar {
+        position: relative;
+        height: 100vh;
+        min-width: 300px;
+        background-color: lightgray;
+        padding: 50px;
+        h1 {
+            margin-bottom: 50px;
+        }
+        .signOutSpan {
+            position: fixed;
+            bottom: 100px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+    }
+}
+.active {
+    background-color: rgb(66, 64, 210);
+    color: #fff;
+}
+.blackColor {
+    color: black;
+}
+
+//@at-root
+
+.addPostContainer {
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .postBox {
+        width: 60vw;
+        height: 80vh;
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 40px;
+        input {
+            outline: none;
+        }
+        .authorInputBox {
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            input {
+                max-width: 300px;
+                width: 100%;
+                height: 40px;
+                padding-left: 10px;
+                font-size: 16px;
+                border-radius: 8px;
+                border: 1px solid black;
+            }
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                cursor: pointer;
+            }
+        }
+        .PostTextIntro {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            input {
+                max-width: 500px;
+                width: 100%;
+                height: 40px;
+                padding-left: 10px;
+                font-size: 16px;
+                border-radius: 8px;
+                border: 1px solid black;
+            }
+            select {
+                outline: none;
+                width: 150px;
+                padding-left: 10px;
+            }
+        }
+        .postText {
+            .ql-editor {
+                height: 300px;
+                overflow-y: scroll;
+            }
+        }
+        .submitBtn {
+            position: sticky;
+            top: 100%;
+            text-align: center;
+            button {
+                width: 130px;
+                height: 40px;
+                font-size: 17px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                &:disabled {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

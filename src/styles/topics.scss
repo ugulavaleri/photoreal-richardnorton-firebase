@@ -1,0 +1,84 @@
+.topicsContainer {
+    max-width: 90%;
+    width: 100%;
+    margin: 100px auto 0 auto;
+    .topicsHeadline {
+        color: #495057;
+        font-family: Lora;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        margin-bottom: 50px;
+        padding-left: 1.5%;
+    }
+    .topicsList {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 60px;
+        column-gap: 30px;
+
+        .imagePart {
+            position: relative;
+            img {
+                border-radius: 5px;
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+
+                vertical-align: top;
+            }
+            span {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+
+                font-size: 13px;
+                color: #000;
+                font-size: 10px;
+                padding: 7px 12px;
+                border-radius: 9px;
+                background: rgba(255, 255, 255, 0.338);
+                font-weight: 700;
+            }
+        }
+
+        .topicWrapper {
+            max-width: 320px;
+            width: 100%;
+
+            margin: 0 auto;
+            font-family: "Lora";
+
+            .textPart {
+                max-height: 170px;
+                overflow: hidden;
+                span {
+                    color: #6c757d;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    display: inline-block;
+                    margin: 17px 0;
+                }
+                h4 {
+                    color: #495057;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 25px;
+                    margin-bottom: 15px;
+                }
+                .post {
+                    color: #6c757d;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}

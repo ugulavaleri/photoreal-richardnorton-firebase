@@ -1,0 +1,17 @@
+@media (max-width: 1100px) {
+    .container .topicsContainer .topicsList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    .container .topicsContainer .topicsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .innerHeader .socialNetworkNav {
+        display: none;
+    }
+    footer .topFooter .innerTopFooter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
