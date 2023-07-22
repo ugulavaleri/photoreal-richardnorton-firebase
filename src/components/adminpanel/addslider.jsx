@@ -86,11 +86,13 @@ function Addslider() {
                     <input
                         type="text"
                         placeholder="Slider headline.."
+                        value={sliderHeadline}
                         onChange={(e) => setSliderHeadline(e.target.value)}
                     />
                     <input
                         type="text"
                         placeholder="Slider title.."
+                        value={sliderTitle}
                         onChange={(e) => setSliderTitle(e.target.value)}
                     />
                 </div>

@@ -28,9 +28,13 @@ body {
     padding: 0;
 }
 
+.swiper-wrapper .swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: 0;
+}
 .swiper {
     width: 100%;
-    height: 70vh;
+    max-height: 70vh;
 }
 
 .swiper-slide {
@@ -42,6 +46,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    max-height: 70vh;
 }
 
 .swiper-slide img {

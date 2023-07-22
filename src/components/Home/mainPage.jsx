@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function MainPage() {
@@ -27,6 +27,11 @@ function MainPage() {
                         slider: d.data().url,
                         sliderHeadline: d.data().sliderHeadline,
                         sliderTitle: d.data().sliderDesc,
+                        time: `${new Date().getDate()}.${
+                            new Date().getMonth() < 10
+                                ? "0" + new Date().getMonth()
+                                : new Date().getMonth()
+                        }.${new Date().getFullYear()}`,
                     });
                 });
                 setList(list);
@@ -41,7 +46,7 @@ function MainPage() {
             <Header />
             <div className="mainPageContainer">
                 <Swiper
-                    spaceBetween={30}
+                    spaceBetween={0}
                     pagination={{
                         clickable: true,
                     }}
@@ -56,7 +61,20 @@ function MainPage() {
                         list.map((img) => {
                             return (
                                 <SwiperSlide key={img.id}>
-                                    <img src={img.slider} className="image" />
+                                    <div className="sliderWrapper">
+                                        <img
+                                            src={img.slider}
+                                            className="image"
+                                        />
+                                        <div className="sliderTextContainer">
+                                            <h2>{img.sliderHeadline}</h2>
+                                            <div className="slidertitleDiv">
+                                                <span>{img.time}</span>
+                                                <span>-----</span>
+                                                <p>{img.sliderTitle}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </SwiperSlide>
                             );
                         })
