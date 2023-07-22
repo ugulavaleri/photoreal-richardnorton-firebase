@@ -3,6 +3,14 @@
     border-right: 1px solid #fff;
     padding-right: 25px;
 }
+.mainPageContainer {
+    position: relative;
+    height: 70vh;
+    .image {
+        width: 100vw;
+        // max-height: 70vh;
+    }
+}
 
 .SliderText {
     color: #fff;

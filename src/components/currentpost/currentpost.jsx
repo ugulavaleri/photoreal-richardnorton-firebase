@@ -44,29 +44,29 @@ function Currentpost() {
                 <div className="currentVisitedOnlyPost">
                     <div>
                         <span className="category">
-                            {current.category?.toUpperCase()}
+                            {current?.category.toUpperCase()}
                         </span>
                     </div>
                     <div>
-                        <h1>{current.headline}</h1>
+                        <h1>{current?.headline}</h1>
                     </div>
                     <div>
-                        <p>{current.shortDesc}</p>
+                        <p>{current?.shortDesc}</p>
                     </div>
                     <div className="author">
-                        <span>By {current.author}</span>
+                        <span>By {current?.author}</span>
                     </div>
                 </div>
             </div>
             <div className="entireBlog">
                 <p
                     dangerouslySetInnerHTML={{
-                        __html: current.entireBlog,
+                        __html: current?.entireBlog,
                     }}
                 ></p>
             </div>
             <div className="endOfBlog">
-                <h3>By {current.author}</h3>
+                <h3>By {current?.author}</h3>
             </div>
             <Footer />
         </>

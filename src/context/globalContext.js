@@ -1,10 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import { useAddPost } from "../hooks/useAddPost";
+import defaultSliderImage from "../images/bgImage.png";
 
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
     const { state, dispatch } = useAddPost();
+
+    // const [sliderImage, setSliderImage] = useState([]);
 
     // save locally to not dissapear after refresh.
     const [currentPostId, setCurrentPostId] = useState(null);

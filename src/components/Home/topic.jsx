@@ -13,8 +13,6 @@ function Topic({ topic }) {
         navigate("/currentpost");
     };
 
-    console.log(topic.id);
-
     return (
         <div className="topicWrapper" onClick={handleNavigateCurrentPost}>
             <div className="imagePart">

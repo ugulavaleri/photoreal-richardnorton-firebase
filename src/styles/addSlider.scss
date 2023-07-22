@@ -1,0 +1,78 @@
+.addSliderContainer {
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .innerAddSliderContainer {
+        max-width: 1000px;
+        width: 100%;
+        min-height: 695px;
+        border-radius: 15px;
+
+        padding: 30px;
+        .uploadBtn {
+            text-align: center;
+            margin-top: 40px;
+            button {
+                width: 100px;
+                height: 40px;
+                background-color: #fff;
+                border: 1px solid black;
+                border-radius: 4px;
+                font-size: 16px;
+                transition: 0.2s;
+
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba(18, 146, 18, 0.818);
+                    color: #fff;
+                    border: none;
+                }
+            }
+        }
+        .addImageBlock {
+            width: 100%;
+            height: 300px;
+            border: 4px dashed rgba(0, 0, 0, 0.38);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .innerAddImageBlock {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                width: 100%;
+                height: 300px;
+                padding: 5px 0;
+                p {
+                    font-size: 30px;
+                    font-weight: 300;
+                }
+                button {
+                    max-width: 120px;
+                    width: 100%;
+                    height: 30px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+                .selectedFile {
+                    width: 100%;
+                    height: 294px;
+                    object-fit: cover;
+                }
+            }
+            .fileInput {
+                display: none;
+            }
+        }
+    }
+}
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
