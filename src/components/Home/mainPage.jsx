@@ -2,6 +2,7 @@ import React from "react";
 import bg from "../../images/bgImage.png";
 import Header from "./header";
 import "../../styles/header.scss";
+import "../../styles/mainPage.scss";
 
 function MainPage() {
     return (

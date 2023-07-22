@@ -10,6 +10,7 @@ import Addslider from "./components/adminpanel/addslider";
 import Generalpage from "./components/adminpanel/generalpage";
 import { GlobalContextProvider } from "./context/globalContext";
 import Currentpost from "./components/currentpost/currentpost";
+import Articles from "./components/articles/articles";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/currentpost" element={<Currentpost />} />
+                <Route path="/articles" element={<Articles />} />
                 <Route path="/admin" element={<Admin />}>
                     <Route index element={<Generalpage />} />
                     <Route path="post" element={<Addpost />} />

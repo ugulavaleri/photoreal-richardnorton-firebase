@@ -22,7 +22,9 @@ function Header() {
                         <li>
                             <Link to={"/"}>Home</Link>
                         </li>
-                        <li>Articles</li>
+                        <li>
+                            <Link to={"/articles"}>Articles</Link>
+                        </li>
                     </ul>
                 </nav>
                 <div className="socialNetworkNav">

@@ -1,23 +1,58 @@
 import "../../styles/topics.scss";
 import Topic from "../Home/topic";
-import { UseFetch } from "../../hooks/useFetch";
 import UseSpinner from "../../hooks/useSpinner";
-import { GlobalContext } from "../../context/globalContext";
+import { useEffect, useState } from "react";
+import { UseFetch } from "../../hooks/useFetch";
 
-function TopicsPage() {
-    const { topics, isLoading, wholeList } = UseFetch(GlobalContext);
+function TopicsPage({ topics, isLoading, topicsText }) {
+    const [chosenCategory, setChosenCategory] = useState("All");
+    const [filtered, setFiltered] = useState(topics);
 
-    // whole list for articles.
-    console.log(wholeList);
+    const Category = [
+        "All",
+        "Adventure",
+        "Travel",
+        "Fashion",
+        "Technology",
+        "Branding",
+    ];
+
+    // uncomplete filter.
+    useEffect(() => {
+        const f = topics.filter((e) => e.category === chosenCategory);
+        setFiltered(f);
+    }, [chosenCategory]);
+
+    const handeFilter = (c) => {
+        setChosenCategory(c);
+    };
 
     return (
         <div className="topicsContainer">
-            <h3 className="topicsHeadline">Popular topics</h3>
+            <h3 className="topicsHeadline">{topicsText}</h3>
+            <div className="CategoryWrapper">
+                {Category.map((c, i) => (
+                    <span
+                        key={i}
+                        className="filterByCategory"
+                        style={{
+                            color: c === chosenCategory ? "#D4A373" : "black",
+                        }}
+                        onClick={() => handeFilter(c)}
+                    >
+                        {c}
+                    </span>
+                ))}
+            </div>
             {isLoading ? (
                 <div className="topicsList">
-                    {topics.map((topic) => (
-                        <Topic topic={topic} key={topic.id} />
-                    ))}
+                    {chosenCategory === "All"
+                        ? topics.map((topic) => (
+                              <Topic topic={topic} key={topic.id} />
+                          ))
+                        : filtered.map((topic) => (
+                              <Topic topic={topic} key={topic.id} />
+                          ))}
                 </div>
             ) : (
                 <div className="spinnerBox">

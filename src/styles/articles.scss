@@ -1,0 +1,21 @@
+.articlesHeader {
+    img {
+        width: 100vw;
+    }
+}
+.wholeListWrapper {
+    margin-top: 100px;
+}
+.articlesImageTitle {
+    position: relative;
+    h1 {
+        position: absolute;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 45px;
+        font-family: Lora;
+        letter-spacing: 1.5px;
+    }
+}

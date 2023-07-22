@@ -1,0 +1,50 @@
+.pageNav,
+.socialNetworkNav {
+    border-right: 1px solid #fff;
+    padding-right: 25px;
+}
+
+.SliderText {
+    color: #fff;
+    position: absolute;
+    bottom: 20%;
+    left: 50px;
+    .category {
+        font-size: 13px;
+        padding: 7px 12px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    .sliderName {
+        font-size: 36px;
+        max-width: 530px;
+        width: 100%;
+        line-height: normal;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        font-family: "Lora", serif;
+    }
+    .postDescriptionDiv {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        .postAddTime {
+            color: #e5e5e5;
+            &::after {
+                content: "";
+                display: inline-block;
+                width: 30px;
+                height: 1px;
+                background-color: #e5e5e5;
+                margin-left: 20px;
+                vertical-align: middle;
+            }
+        }
+        .postDescription {
+            max-width: 420px;
+            width: 100%;
+            font-size: 13px;
+            line-height: 20px;
+        }
+    }
+}
