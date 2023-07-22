@@ -10,13 +10,19 @@ import Header from "../Home/header";
 
 function Currentpost() {
     const { currentPostId } = useContext(GlobalContext);
-    const [current, setCurrent] = useState({});
+
+    const [current, setCurrent] = useState(
+        JSON.parse(localStorage.getItem("currentPost"))
+    );
+
+    useEffect(() => {
+        localStorage.setItem("currentPost", JSON.stringify(current));
+    }, [current]);
 
     useEffect(() => {
         const getCurrentPost = async () => {
             const docRef = doc(db, "users-post", currentPostId);
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists()) {
                 setCurrent(docSnap.data());
             } else {
@@ -25,6 +31,8 @@ function Currentpost() {
         };
         currentPostId && getCurrentPost();
     }, [currentPostId]);
+
+    console.log(current);
 
     return (
         <>

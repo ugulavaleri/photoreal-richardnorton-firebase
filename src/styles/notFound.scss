@@ -1,0 +1,19 @@
+.errorContainer {
+    height: 300px;
+    padding-top: 80px;
+    text-align: center;
+    h1 {
+        font-size: 70px;
+        color: red;
+        letter-spacing: 4px;
+        margin-bottom: 50px;
+    }
+    a {
+        font-size: 20px;
+        color: black;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

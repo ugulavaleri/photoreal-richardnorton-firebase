@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
 import "../../styles/adminGeneral.scss";
-import { GlobalContext } from "../../context/globalContext";
+// import { GlobalContext } from "../../context/globalContext";
 import { UseFetch } from "../../hooks/useFetch";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -8,6 +7,7 @@ import { db } from "../../firebase";
 function Generalpage() {
     const { setWholeList, wholeList, filtered } = UseFetch();
 
+    // removes article from data base.
     const handleDelete = async (id) => {
         try {
             await deleteDoc(doc(db, "users-post", id));
@@ -17,8 +17,11 @@ function Generalpage() {
         }
     };
 
+    // searchs doc in database.
     const handleSearch = (val) => {
-        const filter = filtered.filter((e) => e.headline.includes(val));
+        const filter = filtered.filter((e) =>
+            e.headline.toLowerCase().includes(val.toLowerCase())
+        );
         setWholeList(filter);
     };
 

@@ -7,7 +7,8 @@ export const UseFetch = () => {
     const [topics, setTopics] = useState([]);
     const [wholeList, setWholeList] = useState([]);
     const [isLoading, setLoading] = useState(false);
-    const [filtered, setFilter] = useState(wholeList);
+    // const [filtered, setFilter] = useState([wholeList]);
+    const [filtered, setFilter] = useState([]);
 
     useEffect(() => {
         setLoading(false);

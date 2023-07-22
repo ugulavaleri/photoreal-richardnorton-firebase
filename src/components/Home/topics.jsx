@@ -2,7 +2,6 @@ import "../../styles/topics.scss";
 import Topic from "../Home/topic";
 import UseSpinner from "../../hooks/useSpinner";
 import { useEffect, useState } from "react";
-import { UseFetch } from "../../hooks/useFetch";
 
 function TopicsPage({ topics, isLoading, topicsText }) {
     const [chosenCategory, setChosenCategory] = useState("All");
@@ -27,6 +26,9 @@ function TopicsPage({ topics, isLoading, topicsText }) {
         setChosenCategory(c);
     };
 
+    // returns whole list if user choose 'All'
+    let displayData = chosenCategory === "All" ? topics : filtered;
+
     return (
         <div className="topicsContainer">
             <h3 className="topicsHeadline">{topicsText}</h3>
@@ -45,14 +47,20 @@ function TopicsPage({ topics, isLoading, topicsText }) {
                 ))}
             </div>
             {isLoading ? (
+                // <div className="topicsList">
+                //     {chosenCategory === "All"
+                //         ? topics.map((topic) => (
+                //               <Topic topic={topic} key={topic.id} />
+                //           ))
+                //         : filtered.map((topic) => (
+                //               <Topic topic={topic} key={topic.id} />
+                //           ))}
+                // </div>
+
                 <div className="topicsList">
-                    {chosenCategory === "All"
-                        ? topics.map((topic) => (
-                              <Topic topic={topic} key={topic.id} />
-                          ))
-                        : filtered.map((topic) => (
-                              <Topic topic={topic} key={topic.id} />
-                          ))}
+                    {displayData.map((topic) => (
+                        <Topic topic={topic} key={topic.id} />
+                    ))}
                 </div>
             ) : (
                 <div className="spinnerBox">
