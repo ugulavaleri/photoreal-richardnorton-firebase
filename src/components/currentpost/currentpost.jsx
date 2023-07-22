@@ -32,8 +32,6 @@ function Currentpost() {
         currentPostId && getCurrentPost();
     }, [currentPostId]);
 
-    console.log(current);
-
     return (
         <>
             <Header />

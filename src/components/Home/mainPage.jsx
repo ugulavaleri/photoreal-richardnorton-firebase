@@ -21,12 +21,14 @@ function MainPage() {
         try {
             onSnapshot(collection(db, "SliderImages"), (doc) => {
                 let list = [];
-                doc.docs.forEach((d) =>
+                doc.docs.forEach((d) => {
                     list.push({
                         id: d.id,
-                        slider: d.data(),
-                    })
-                );
+                        slider: d.data().url,
+                        sliderHeadline: d.data().sliderHeadline,
+                        sliderTitle: d.data().sliderDesc,
+                    });
+                });
                 setList(list);
             });
         } catch (error) {
@@ -54,10 +56,7 @@ function MainPage() {
                         list.map((img) => {
                             return (
                                 <SwiperSlide key={img.id}>
-                                    <img
-                                        src={img?.slider.url}
-                                        className="image"
-                                    />
+                                    <img src={img.slider} className="image" />
                                 </SwiperSlide>
                             );
                         })
