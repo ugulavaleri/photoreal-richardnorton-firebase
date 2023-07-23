@@ -85,6 +85,7 @@ function Addpost() {
                                     : noProfile
                             }
                             onClick={handleUploadImage}
+                            alt="noProfile"
                         />
                         <input
                             type="file"

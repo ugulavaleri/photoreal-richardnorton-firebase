@@ -3,6 +3,7 @@ import "../../styles/adminGeneral.scss";
 import { UseFetch } from "../../hooks/useFetch";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useMemo } from "react";
 
 function Generalpage() {
     const { setWholeList, wholeList, filtered } = UseFetch();
@@ -41,7 +42,10 @@ function Generalpage() {
                             return (
                                 <li className="entireList" key={eachList.id}>
                                     <div className="imageWrapper">
-                                        <img src={eachList.postImageURL} />
+                                        <img
+                                            src={eachList.postImageURL}
+                                            alt="postImg"
+                                        />
                                         <h3>{eachList.headline}</h3>
                                     </div>
                                     <div className="removeButton">

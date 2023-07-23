@@ -1,57 +1,16 @@
-import { addDoc, collection } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { useEffect, useRef, useState } from "react";
-import { db, storage } from "../../firebase";
-import UseSpinner from "../../hooks/useSpinner";
 import "../../styles/addSlider.scss";
+import { useMemo, useRef } from "react";
+import UseSpinner from "../../hooks/useSpinner";
+import { UseAddSlider } from "../../hooks/useAddSlider";
 
 function Addslider() {
     const fileInputRef = useRef(null);
-    const [isLoading, setLoading] = useState(true);
-    const [sliderHeadline, setSliderHeadline] = useState("");
-    const [sliderTitle, setSliderTitle] = useState("");
 
     const selectFile = () => {
         fileInputRef.current.click();
     };
-    const [file, setFile] = useState("");
-    const [img, setImg] = useState("");
 
-    //
-    useEffect(() => {
-        const upload = async () => {
-            if (!file) return;
-            setLoading(false);
-            const uniqueImgName = new Date().getTime() + file.name;
-
-            const storageRef = ref(storage, uniqueImgName);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-            try {
-                await uploadTask;
-                const downloadURL = await getDownloadURL(
-                    uploadTask.snapshot.ref
-                );
-                setImg(downloadURL);
-                setLoading(true);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        upload();
-    }, [file]);
-
-    const handleUploadSlider = async () => {
-        setLoading(false);
-        await addDoc(collection(db, "SliderImages"), {
-            sliderHeadline: sliderHeadline,
-            sliderDesc: sliderTitle,
-            url: img,
-        });
-        setLoading(true);
-        setFile("");
-        setSliderHeadline("");
-        setSliderTitle("");
-    };
+    const { isLoading, state, dispatch, handleUploadSlider } = UseAddSlider();
 
     return (
         <div className="addSliderContainer">
@@ -59,8 +18,12 @@ function Addslider() {
                 <div className="addImageBlock">
                     <div className="innerAddImageBlock">
                         {isLoading ? (
-                            file !== "" ? (
-                                <img src={img} className="image" />
+                            state.file !== "" ? (
+                                <img
+                                    src={state.img}
+                                    className="image"
+                                    alt="uploaded"
+                                />
                             ) : (
                                 <>
                                     <p>Select File</p>
@@ -69,7 +32,10 @@ function Addslider() {
                                         className="fileInput"
                                         ref={fileInputRef}
                                         onChange={(e) =>
-                                            setFile(e.target.files[0])
+                                            dispatch({
+                                                type: "setFile",
+                                                payload: e.target.files[0],
+                                            })
                                         }
                                     />
                                     <button onClick={selectFile}>
@@ -86,14 +52,24 @@ function Addslider() {
                     <input
                         type="text"
                         placeholder="Slider headline.."
-                        value={sliderHeadline}
-                        onChange={(e) => setSliderHeadline(e.target.value)}
+                        value={state.sliderHeadline}
+                        onChange={(e) =>
+                            dispatch({
+                                type: "setSliderHeadline",
+                                payload: e.target.value,
+                            })
+                        }
                     />
                     <input
                         type="text"
                         placeholder="Slider title.."
-                        value={sliderTitle}
-                        onChange={(e) => setSliderTitle(e.target.value)}
+                        value={state.sliderTitle}
+                        onChange={(e) =>
+                            dispatch({
+                                type: "setSliderTitle",
+                                payload: e.target.value,
+                            })
+                        }
                     />
                 </div>
                 <div className="uploadBtn">

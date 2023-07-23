@@ -37,7 +37,7 @@ function Currentpost() {
             <Header />
             <div className="currentPostContainer">
                 <div className="currentVisitedImgBox">
-                    <img src={Bg} />
+                    <img src={Bg} alt="userChosenPageBg" />
                 </div>
                 <div className="currentVisitedOnlyPost">
                     <div>

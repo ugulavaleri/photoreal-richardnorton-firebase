@@ -7,10 +7,17 @@ export const UseFetch = () => {
     const [topics, setTopics] = useState([]);
     const [wholeList, setWholeList] = useState([]);
     const [isLoading, setLoading] = useState(false);
-    // const [filtered, setFilter] = useState([wholeList]);
     const [filtered, setFilter] = useState([]);
 
+    const [isDataFetched, setDataFetched] = useState(false);
+
     useEffect(() => {
+        if (isDataFetched) {
+            return;
+        }
+
+        console.log("fetched");
+
         setLoading(false);
         const fetchData = async () => {
             try {
@@ -27,13 +34,14 @@ export const UseFetch = () => {
                     setFilter(entireList);
                     setTopics(displayList);
                     setLoading(true);
+                    setDataFetched(true);
                 });
             } catch (error) {
                 console.log(error);
             }
         };
         fetchData();
-    }, []);
+    }, [isDataFetched]);
 
     return { topics, isLoading, wholeList, setWholeList, setFilter, filtered };
 };

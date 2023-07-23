@@ -16,7 +16,7 @@ function Topic({ topic }) {
     return (
         <div className="topicWrapper" onClick={handleNavigateCurrentPost}>
             <div className="imagePart">
-                <img src={topic.postImageURL} />
+                <img src={topic.postImageURL} alt="topicImage" />
                 <span>{topic.category.toUpperCase()}</span>
             </div>
             <div className="textPart">
