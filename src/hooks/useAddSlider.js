@@ -1,47 +1,52 @@
-import { addDoc, collection } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { useEffect, useReducer, useState } from "react";
-import { db, storage } from "../firebase";
-import { reducer } from "../hooks/useAddSliderReducer";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../context/globalContext";
+import { db } from "../firebase";
+import { S } from "../reducers/SliderReducer";
+import { UseGetUrl } from "./useGetUrl";
 
 export function UseAddSlider() {
-    const [state, dispatch] = useReducer(reducer, {
-        sliderHeadline: "",
-        sliderTitle: "",
-        file: "",
-        img: "",
-    });
-    const [isLoading, setLoading] = useState(true);
+    const { state, dispatch } = S();
+    const { isLoading, setLoading } = UseGetUrl(state, dispatch, "uploadImage");
+
+    const [isDataFetched, setDataFetched] = useState(false);
+    const { currentDate } = useContext(GlobalContext);
 
     useEffect(() => {
-        const upload = async () => {
-            if (!state.file) return;
-            setLoading(false);
-            const uniqueImgName = new Date().getTime() + state.file.name;
-
-            const storageRef = ref(storage, uniqueImgName);
-            const uploadTask = uploadBytesResumable(storageRef, state.file);
-            try {
-                await uploadTask;
-                const downloadURL = await getDownloadURL(
-                    uploadTask.snapshot.ref
-                );
-                dispatch({ type: "uploadImage", payload: downloadURL });
-                setLoading(true);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        upload();
-    }, [state.file]);
+        if (isDataFetched) {
+            return;
+        }
+        try {
+            onSnapshot(collection(db, "SliderImages"), (doc) => {
+                let list = [];
+                doc.docs.forEach((d) => {
+                    list.push({
+                        id: d.id,
+                        slider: d.data().url,
+                        sliderHeadline: d.data().sliderHeadline,
+                        sliderTitle: d.data().sliderDesc,
+                        time: currentDate,
+                    });
+                });
+                dispatch({ type: "fillList", payload: list });
+            });
+            setDataFetched(true);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [state.list]);
 
     const handleUploadSlider = async () => {
         setLoading(false);
-        await addDoc(collection(db, "SliderImages"), {
-            sliderHeadline: state.sliderHeadline,
-            sliderDesc: state.sliderTitle,
-            url: state.img,
-        });
+        if (state.img !== "") {
+            await addDoc(collection(db, "SliderImages"), {
+                sliderHeadline: state.sliderHeadline,
+                sliderDesc: state.sliderTitle,
+                url: state.img,
+            });
+        } else {
+            window.alert("you must add at least slider image!");
+        }
         setLoading(true);
         dispatch({ type: "clean" });
     };

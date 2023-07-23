@@ -16,10 +16,9 @@ function TopicsPage({ topics, isLoading, topicsText }) {
         "Branding",
     ];
 
-    // uncomplete filter.
     useEffect(() => {
-        const f = topics.filter((e) => e.category === chosenCategory);
-        setFiltered(f);
+        const flt = topics.filter((e) => e.category === chosenCategory);
+        setFiltered(flt);
     }, [chosenCategory]);
 
     const handeFilter = (c) => {
@@ -47,16 +46,6 @@ function TopicsPage({ topics, isLoading, topicsText }) {
                 ))}
             </div>
             {isLoading ? (
-                // <div className="topicsList">
-                //     {chosenCategory === "All"
-                //         ? topics.map((topic) => (
-                //               <Topic topic={topic} key={topic.id} />
-                //           ))
-                //         : filtered.map((topic) => (
-                //               <Topic topic={topic} key={topic.id} />
-                //           ))}
-                // </div>
-
                 <div className="topicsList">
                     {displayData.map((topic) => (
                         <Topic topic={topic} key={topic.id} />

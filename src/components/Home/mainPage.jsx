@@ -1,45 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "./header";
 import "../../styles/header.scss";
 import "../../styles/mainPage.scss";
-import "../../App.css";
-import defaultSliderImage from "../../images/articlesBg.png";
+import defaultSliderImage from "../../images/articlesBg.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "../../firebase";
+import { UseAddSlider } from "../../hooks/useAddSlider";
 
 function MainPage() {
-    const [list, setList] = useState([]);
-
-    // may be error
     useEffect(() => {
-        try {
-            onSnapshot(collection(db, "SliderImages"), (doc) => {
-                let list = [];
-                doc.docs.forEach((d) => {
-                    list.push({
-                        id: d.id,
-                        slider: d.data().url,
-                        sliderHeadline: d.data().sliderHeadline,
-                        sliderTitle: d.data().sliderDesc,
-                        time: `${new Date().getDate()}.${
-                            new Date().getMonth() < 10
-                                ? "0" + new Date().getMonth()
-                                : new Date().getMonth()
-                        }.${new Date().getFullYear()}`,
-                    });
-                });
-                setList(list);
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }, [list]);
+        window.scrollTo(0, 0);
+    }, ["/"]);
+
+    const { state } = UseAddSlider();
+    console.log(state);
 
     return (
         <>
@@ -53,35 +30,31 @@ function MainPage() {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    {list.length === 0 ? (
-                        <SwiperSlide>
-                            <img
-                                src={defaultSliderImage}
-                                className="image"
-                                alt="sliderImage"
-                            />
-                        </SwiperSlide>
+                    {state.list.length === 0 ? (
+                        <img
+                            src={defaultSliderImage}
+                            className="image"
+                            alt="sliderImage"
+                        />
                     ) : (
-                        list.map((img) => {
-                            return (
-                                <SwiperSlide key={img.id}>
-                                    <div className="sliderWrapper">
-                                        <img
-                                            src={img.slider}
-                                            className="image"
-                                            alt="currentSliderImage"
-                                        />
-                                        <div className="sliderTextContainer">
-                                            <h2>{img.sliderHeadline}</h2>
-                                            <div className="slidertitleDiv">
-                                                <span>{img.time}</span>
-                                                <p>{img.sliderTitle}</p>
-                                            </div>
+                        state.list.map((img) => (
+                            <SwiperSlide key={img.id}>
+                                <div className="sliderWrapper">
+                                    <img
+                                        src={img.slider}
+                                        className="image"
+                                        alt="currentSliderImage"
+                                    />
+                                    <div className="sliderTextContainer">
+                                        <h2>{img.sliderHeadline}</h2>
+                                        <div className="slidertitleDiv">
+                                            <span>{img.time}</span>
+                                            <p>{img.sliderTitle}</p>
                                         </div>
                                     </div>
-                                </SwiperSlide>
-                            );
-                        })
+                                </div>
+                            </SwiperSlide>
+                        ))
                     )}
                 </Swiper>
             </div>

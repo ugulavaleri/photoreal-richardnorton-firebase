@@ -16,8 +16,6 @@ export const UseFetch = () => {
             return;
         }
 
-        console.log("fetched");
-
         setLoading(false);
         const fetchData = async () => {
             try {

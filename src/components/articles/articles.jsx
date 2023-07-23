@@ -3,7 +3,7 @@ import "../../styles/articles.scss";
 import Footer from "../Home/footer";
 import Header from "../Home/header";
 import TopicsPage from "../Home/topics";
-import articlesBg from "../../images/articlesBg.png";
+import articlesBg from "../../images/articlesBg.webp";
 
 function Articles() {
     const { wholeList, isLoading } = UseFetch();

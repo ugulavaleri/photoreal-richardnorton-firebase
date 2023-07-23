@@ -1,4 +1,5 @@
-export const reducer = (state, action) => {
+import { useReducer } from "react";
+const reducer = (state, action) => {
     switch (action.type) {
         case "updatePercentage":
             return {
@@ -12,7 +13,6 @@ export const reducer = (state, action) => {
                 successfulyUploaded: false,
                 postImage: action.payload,
             };
-
         case "setHeadline":
             return {
                 ...state,
@@ -57,4 +57,17 @@ export const reducer = (state, action) => {
         default:
             return state;
     }
+};
+export const P = () => {
+    const [state, dispatch] = useReducer(reducer, {
+        author: "",
+        shortDesc: "",
+        percentage: null,
+        headline: "",
+        category: "Adventure",
+        postImage: "",
+        profileImage: "",
+        file: "",
+    });
+    return { dispatch, state };
 };

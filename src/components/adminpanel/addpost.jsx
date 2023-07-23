@@ -7,8 +7,8 @@ import UseSpinner from "../../hooks/useSpinner";
 
 function Addpost() {
     // global reducer
-    // every dispach method has proper type name.
-    const { state, dispatch, handleSubmit, setValue, value } = useAddPost();
+    const { state, dispatch, HandleSubmit, setValue, value, isLoading } =
+        useAddPost();
 
     const postInputRef = useRef(null);
     const handleUploadImage = () => {
@@ -107,15 +107,8 @@ function Addpost() {
                             Post added Successfully!
                         </span>
                     )}
-                    {state.percentage < 100 && state.percentage !== null && (
-                        <UseSpinner />
-                    )}
-                    <button
-                        onClick={handleSubmit}
-                        disabled={
-                            state.percentage < 100 && state.percentage !== null
-                        }
-                    >
+                    {!isLoading && <UseSpinner />}
+                    <button onClick={HandleSubmit} disabled={!isLoading}>
                         Submit
                     </button>
                 </div>

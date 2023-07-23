@@ -3,7 +3,6 @@ import "../../styles/adminGeneral.scss";
 import { UseFetch } from "../../hooks/useFetch";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { useMemo } from "react";
 
 function Generalpage() {
     const { setWholeList, wholeList, filtered } = UseFetch();

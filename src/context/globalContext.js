@@ -1,19 +1,22 @@
 import { createContext, useState } from "react";
-import { useAddPost } from "../hooks/useAddPost";
 
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
-    const { state, dispatch } = useAddPost();
     const [currentPostId, setCurrentPostId] = useState(null);
+
+    const currentDate = `${new Date().getDate()}.${
+        new Date().getMonth() < 10
+            ? "0" + new Date().getMonth()
+            : new Date().getMonth()
+    }.${new Date().getFullYear()}`;
 
     return (
         <GlobalContext.Provider
             value={{
-                state,
-                dispatch,
                 currentPostId,
                 setCurrentPostId,
+                currentDate,
             }}
         >
             {children}

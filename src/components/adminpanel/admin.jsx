@@ -7,16 +7,45 @@ import { Outlet, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 function Admin() {
-    const [activeNavItem, setActiveNavItem] = useState("admin");
+    const [activeNavItem, setActiveNavItem] = useState("/admin");
     const navigateHome = useNavigate();
-
-    const handleActiveAdminNav = (navItem) => {
-        setActiveNavItem(navItem);
-    };
 
     const handleSignOut = () => {
         navigateHome("/");
     };
+
+    const links = [
+        {
+            direction: "/admin",
+            linkText: "General",
+            icon: (
+                <AiFillHome
+                    size={30}
+                    color={activeNavItem === "/admin" ? "#fff" : ""}
+                />
+            ),
+        },
+        {
+            direction: "post",
+            linkText: "Posts",
+            icon: (
+                <MdTopic
+                    size={30}
+                    color={activeNavItem === "post" ? "#fff" : ""}
+                />
+            ),
+        },
+        {
+            direction: "slider",
+            linkText: "Sliders",
+            icon: (
+                <AiFillFileImage
+                    size={30}
+                    color={activeNavItem === "slider" ? "#fff" : ""}
+                />
+            ),
+        },
+    ];
 
     return (
         <div className="adminContainer">
@@ -24,67 +53,24 @@ function Admin() {
                 <h1>Admin Panel</h1>
                 <nav>
                     <ul>
-                        <li>
-                            <Link
-                                to={"/admin"}
-                                onClick={() => handleActiveAdminNav("admin")}
-                                className={
-                                    activeNavItem === "admin"
-                                        ? "active"
-                                        : "blackColor"
-                                }
-                            >
-                                <AiFillHome
-                                    size={30}
-                                    color={
-                                        activeNavItem === "general"
-                                            ? "#fff"
-                                            : ""
+                        {links.map((link, i) => (
+                            <li key={i}>
+                                <Link
+                                    to={link.direction}
+                                    onClick={() =>
+                                        setActiveNavItem(link.direction)
                                     }
-                                />
-                                General
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={"post"}
-                                onClick={() => handleActiveAdminNav("posts")}
-                                className={
-                                    activeNavItem === "posts"
-                                        ? "active"
-                                        : "blackColor"
-                                }
-                            >
-                                <MdTopic
-                                    size={30}
-                                    color={
-                                        activeNavItem === "posts" ? "#fff" : ""
+                                    className={
+                                        activeNavItem === link.direction
+                                            ? "active"
+                                            : "blackColor"
                                     }
-                                />
-                                Posts
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={"slider"}
-                                onClick={() => handleActiveAdminNav("sliders")}
-                                className={
-                                    activeNavItem === "sliders"
-                                        ? "active"
-                                        : "blackColor"
-                                }
-                            >
-                                <AiFillFileImage
-                                    size={30}
-                                    color={
-                                        activeNavItem === "sliders"
-                                            ? "#fff"
-                                            : ""
-                                    }
-                                />
-                                Sliders
-                            </Link>
-                        </li>
+                                >
+                                    {link.icon}
+                                    {link.linkText}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
                 <span onClick={handleSignOut} className="signOutSpan">

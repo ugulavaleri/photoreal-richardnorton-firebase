@@ -1,5 +1,5 @@
 import "../../styles/addSlider.scss";
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 import UseSpinner from "../../hooks/useSpinner";
 import { UseAddSlider } from "../../hooks/useAddSlider";
 

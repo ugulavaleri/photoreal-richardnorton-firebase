@@ -3,7 +3,7 @@ import "../../styles/userVisitedPost.scss";
 import "../../styles/header.scss";
 import { doc, getDoc } from "firebase/firestore";
 import { GlobalContext } from "../../context/globalContext";
-import Bg from "../../images/currentPostBg.png";
+import Bg from "../../images/currentPostBg.webp";
 import { db } from "../../firebase";
 import Footer from "../Home/footer";
 import Header from "../Home/header";
@@ -11,15 +11,20 @@ import Header from "../Home/header";
 function Currentpost() {
     const { currentPostId } = useContext(GlobalContext);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, ["/currentPost"]);
+
     const [current, setCurrent] = useState(
         JSON.parse(localStorage.getItem("currentPost"))
     );
 
     useEffect(() => {
         localStorage.setItem("currentPost", JSON.stringify(current));
-    }, [current]);
+    }, [current, currentPostId]);
 
     useEffect(() => {
+        console.log("fetched again");
         const getCurrentPost = async () => {
             const docRef = doc(db, "users-post", currentPostId);
             const docSnap = await getDoc(docRef);

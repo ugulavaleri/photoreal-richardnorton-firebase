@@ -1,4 +1,5 @@
-export const reducer = (state, action) => {
+import { useReducer } from "react";
+const reducer = (state, action) => {
     switch (action.type) {
         case "uploadImage":
             return {
@@ -9,6 +10,11 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 file: action.payload,
+            };
+        case "fillList":
+            return {
+                ...state,
+                list: action.payload,
             };
         case "setSliderHeadline":
             return {
@@ -27,8 +33,17 @@ export const reducer = (state, action) => {
                 sliderHeadline: "",
                 sliderTitle: "",
             };
-
         default:
             break;
     }
+};
+export const S = () => {
+    const [state, dispatch] = useReducer(reducer, {
+        sliderHeadline: "",
+        sliderTitle: "",
+        file: "",
+        img: "",
+        list: [],
+    });
+    return { state, dispatch };
 };
