@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding: 0 25px;
     .innerAdminGeneral {
         max-width: 1000px;
         width: 100%;
@@ -11,6 +13,8 @@
         ul {
             max-height: 60vh;
             overflow-y: scroll;
+            width: 100%;
+
             .entireList {
                 border-bottom: 1px solid lightgray;
                 padding: 10px 5px;
@@ -21,6 +25,8 @@
 
                 gap: 50px;
                 position: relative;
+
+                width: 100%;
 
                 .removeButton {
                     button {

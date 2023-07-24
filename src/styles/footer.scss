@@ -74,3 +74,9 @@ footer {
         }
     }
 }
+
+@media (max-width: 800px) {
+    footer .topFooter .innerTopFooter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

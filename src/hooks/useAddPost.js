@@ -11,7 +11,13 @@ export const useAddPost = () => {
 
     const { state, dispatch } = P();
     const { currentDate } = useContext(GlobalContext);
-    const { isLoading } = UseGetUrl(state, dispatch, "setPostImageURL");
+    const { isLoading, setLoading } = UseGetUrl(
+        state,
+        dispatch,
+        "setPostImageURL"
+    );
+
+    console.log(isLoading);
 
     // uploads post
     const HandleSubmit = async () => {

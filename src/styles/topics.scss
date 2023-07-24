@@ -107,3 +107,14 @@
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 1100px) {
+    .topicsContainer .topicsList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 800px) {
+    .topicsContainer .topicsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

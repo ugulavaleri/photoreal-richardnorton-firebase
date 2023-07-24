@@ -1,7 +1,7 @@
 import "../../styles/topics.scss";
 import Topic from "../Home/topic";
 import UseSpinner from "../../hooks/useSpinner";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 function TopicsPage({ topics, isLoading, topicsText }) {
     const [chosenCategory, setChosenCategory] = useState("All");
@@ -60,4 +60,4 @@ function TopicsPage({ topics, isLoading, topicsText }) {
     );
 }
 
-export default TopicsPage;
+export default memo(TopicsPage);

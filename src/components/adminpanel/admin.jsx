@@ -2,8 +2,8 @@ import { MdTopic } from "react-icons/md";
 import { AiFillFileImage, AiFillHome } from "react-icons/ai";
 import { GoSignOut } from "react-icons/go";
 import "../../styles/admin.scss";
-import { useState } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 function Admin() {
@@ -13,6 +13,7 @@ function Admin() {
     const handleSignOut = () => {
         navigateHome("/");
     };
+    const location = useLocation();
 
     const links = [
         {
@@ -26,26 +27,30 @@ function Admin() {
             ),
         },
         {
-            direction: "post",
+            direction: "/admin/post",
             linkText: "Posts",
             icon: (
                 <MdTopic
                     size={30}
-                    color={activeNavItem === "post" ? "#fff" : ""}
+                    color={activeNavItem === "/admin/post" ? "#fff" : ""}
                 />
             ),
         },
         {
-            direction: "slider",
+            direction: "/admin/slider",
             linkText: "Sliders",
             icon: (
                 <AiFillFileImage
                     size={30}
-                    color={activeNavItem === "slider" ? "#fff" : ""}
+                    color={activeNavItem === "/admin/slider" ? "#fff" : ""}
                 />
             ),
         },
     ];
+
+    useEffect(() => {
+        setActiveNavItem(location.pathname);
+    }, [location]);
 
     return (
         <div className="adminContainer">

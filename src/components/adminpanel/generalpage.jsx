@@ -1,11 +1,11 @@
 import "../../styles/adminGeneral.scss";
-// import { GlobalContext } from "../../context/globalContext";
-import { UseFetch } from "../../hooks/useFetch";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/globalContext";
 
 function Generalpage() {
-    const { setWholeList, wholeList, filtered } = UseFetch();
+    const { setWholeList, wholeList, filtered } = useContext(GlobalContext);
 
     // removes article from data base.
     const handleDelete = async (id) => {

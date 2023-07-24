@@ -16,7 +16,6 @@ function Currentpost() {
     );
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         localStorage.setItem("currentPost", JSON.stringify(current));
 
         const getCurrentPost = async () => {

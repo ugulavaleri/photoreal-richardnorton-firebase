@@ -1,13 +1,9 @@
-import { useEffect } from "react";
-import { UseFetch } from "../../hooks/useFetch";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/globalContext";
 import Template from "../Tamplate";
 
 function Articles() {
-    const { wholeList, isLoading } = UseFetch();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    const { wholeList, isLoading } = useContext(GlobalContext);
 
     return (
         <Template

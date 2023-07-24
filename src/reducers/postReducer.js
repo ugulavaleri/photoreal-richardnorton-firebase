@@ -67,7 +67,6 @@ export const P = () => {
         headline: "",
         category: "Adventure",
         postImage: "",
-        profileImage: "",
         file: "",
     });
 

@@ -1,16 +1,16 @@
-import { UseFetch } from "../../hooks/useFetch";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Template from "../Tamplate";
+import { GlobalContext } from "../../context/globalContext";
 
 function Home() {
-    const { topics, isLoading } = UseFetch();
+    const { wholeList, isLoading } = useContext(GlobalContext);
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     return (
         <Template
-            topics={topics}
+            topics={wholeList.slice(0, 8)}
             isLoading={isLoading}
             topicsText="Popular Topics"
         />

@@ -10,8 +10,6 @@ function Addpost() {
     const { state, dispatch, HandleSubmit, setValue, value, isLoading } =
         useAddPost();
 
-    console.log(isLoading);
-
     const postInputRef = useRef(null);
     const handleUploadImage = () => {
         state.file === "" && postInputRef.current.click();

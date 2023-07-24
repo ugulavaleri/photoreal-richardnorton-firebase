@@ -4,12 +4,10 @@ import { storage } from "../firebase";
 
 export function UseGetUrl(state, dispatch, dispatchType) {
     const [isLoading, setLoading] = useState(true);
-    const [isDataFetched, setDataFetched] = useState(false);
 
     useEffect(() => {
-        if (isDataFetched) {
-            return;
-        }
+        if (!state.file) return;
+
         const upload = async () => {
             if (!state.file) return;
             setLoading(false);
@@ -24,7 +22,6 @@ export function UseGetUrl(state, dispatch, dispatchType) {
                 );
                 dispatch({ type: dispatchType, payload: downloadURL });
                 setLoading(true);
-                setDataFetched(true);
             } catch (error) {
                 console.log(error);
             }

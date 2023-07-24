@@ -1,15 +1,17 @@
 import "../styles/articles.scss";
+import "../styles/topics.scss";
 import Footer from "./Home/footer";
 import Header from "./Home/header";
-import TopicsPage from "./Home/topics";
 import MainPage from "./Home/mainPage";
-import { memo } from "react";
+import TopicsPage from "./Home/topics";
 
 function Template({ topics, isLoading, topicsText }) {
     return (
         <>
             <Header />
-            <MainPage />
+            <div className="wrapp">
+                <MainPage />
+            </div>
             <TopicsPage
                 topics={topics}
                 isLoading={isLoading}
@@ -20,4 +22,4 @@ function Template({ topics, isLoading, topicsText }) {
     );
 }
 
-export default memo(Template);
+export default Template;

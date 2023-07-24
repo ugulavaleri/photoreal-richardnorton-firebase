@@ -1,15 +1,17 @@
 import { createContext, useState } from "react";
+import { UseFetchPosts } from "../hooks/useFetchPosts";
 
 export const GlobalContext = createContext();
 
+const currentDate = `${new Date().getDate()}.${
+    new Date().getMonth() < 10
+        ? "0" + new Date().getMonth()
+        : new Date().getMonth()
+}.${new Date().getFullYear()}`;
+
 export const GlobalContextProvider = ({ children }) => {
     const [currentPostId, setCurrentPostId] = useState(null);
-
-    const currentDate = `${new Date().getDate()}.${
-        new Date().getMonth() < 10
-            ? "0" + new Date().getMonth()
-            : new Date().getMonth()
-    }.${new Date().getFullYear()}`;
+    const { isLoading, wholeList, setWholeList, filtered } = UseFetchPosts();
 
     return (
         <GlobalContext.Provider
@@ -17,6 +19,9 @@ export const GlobalContextProvider = ({ children }) => {
                 currentPostId,
                 setCurrentPostId,
                 currentDate,
+                isLoading,
+                wholeList,
+                setWholeList,
             }}
         >
             {children}
