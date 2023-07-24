@@ -10,6 +10,8 @@ function Addpost() {
     const { state, dispatch, HandleSubmit, setValue, value, isLoading } =
         useAddPost();
 
+    console.log(isLoading);
+
     const postInputRef = useRef(null);
     const handleUploadImage = () => {
         state.file === "" && postInputRef.current.click();
@@ -89,12 +91,12 @@ function Addpost() {
                         />
                         <input
                             type="file"
-                            onChange={(e) =>
+                            onChange={(e) => {
                                 dispatch({
                                     type: "setFile",
                                     payload: e.target.files[0],
-                                })
-                            }
+                                });
+                            }}
                             style={{ display: "none" }}
                             ref={postInputRef}
                         />

@@ -5,11 +5,9 @@ import { UseAddSlider } from "../../hooks/useAddSlider";
 
 function Addslider() {
     const fileInputRef = useRef(null);
-
     const selectFile = () => {
         fileInputRef.current.click();
     };
-
     const { isLoading, state, dispatch, handleUploadSlider } = UseAddSlider();
 
     return (

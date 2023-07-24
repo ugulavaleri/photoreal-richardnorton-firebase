@@ -6,7 +6,6 @@ import Notfound from "./components/notFound/notfound";
 import Admin from "./components/adminpanel/admin";
 import Addpost from "./components/adminpanel/addpost";
 import Addslider from "./components/adminpanel/addslider";
-// import AdminNavigation from "./components/adminNavigation";
 import Generalpage from "./components/adminpanel/generalpage";
 import { GlobalContextProvider } from "./context/globalContext";
 import Currentpost from "./components/currentpost/currentpost";

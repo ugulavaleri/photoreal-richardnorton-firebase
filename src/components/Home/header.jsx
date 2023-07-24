@@ -1,14 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "../../styles/header.scss";
-import {
-    BsFacebook,
-    BsTwitter,
-    BsYoutube,
-    BsPinterest,
-    BsSearch,
-} from "react-icons/bs";
-import { FaBehanceSquare } from "react-icons/fa";
+import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { icons } from "../icons";
 
 function Header() {
     return (
@@ -27,52 +21,7 @@ function Header() {
                         </li>
                     </ul>
                 </nav>
-                <div className="socialNetworkNav">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a
-                                    href="https://www.facebook.com/"
-                                    aria-label="Facebook"
-                                >
-                                    <BsFacebook color="#fff" size={18} />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://twitter.com/"
-                                    aria-label="Twitter"
-                                >
-                                    <BsTwitter color="#fff" size={18} />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.youtube.com/"
-                                    aria-label="Youtube"
-                                >
-                                    <BsYoutube color="#fff" size={18} />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.pinterest.com/"
-                                    aria-label="Pinterest"
-                                >
-                                    <BsPinterest color="#fff" size={18} />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.behance.net/"
-                                    aria-label="Behance"
-                                >
-                                    <FaBehanceSquare color="#fff" size={18} />
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                <div className="socialNetworkNav">{icons}</div>
                 <div>
                     <BsSearch size={20} />
                 </div>
@@ -81,4 +30,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default memo(Header);

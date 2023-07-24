@@ -11,20 +11,14 @@ import Header from "../Home/header";
 function Currentpost() {
     const { currentPostId } = useContext(GlobalContext);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, ["/currentPost"]);
-
     const [current, setCurrent] = useState(
         JSON.parse(localStorage.getItem("currentPost"))
     );
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         localStorage.setItem("currentPost", JSON.stringify(current));
-    }, [current, currentPostId]);
 
-    useEffect(() => {
-        console.log("fetched again");
         const getCurrentPost = async () => {
             const docRef = doc(db, "users-post", currentPostId);
             const docSnap = await getDoc(docRef);
@@ -35,7 +29,7 @@ function Currentpost() {
             }
         };
         currentPostId && getCurrentPost();
-    }, [currentPostId]);
+    }, [current, currentPostId]);
 
     return (
         <>

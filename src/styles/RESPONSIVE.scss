@@ -2,13 +2,25 @@
     .container .topicsContainer .topicsList {
         grid-template-columns: repeat(3, 1fr);
     }
+    .wholeListWrapper .topicsContainer .topicsList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    // .sliderWrapper .sliderTextContainer {
+    //     position: absolute;
+    //     bottom: 130px;
+    //     left: 5020%;
+
+    // }
 }
 
 @media (max-width: 850px) {
     .container .topicsContainer .topicsList {
         grid-template-columns: repeat(2, 1fr);
     }
-    .innerHeader .socialNetworkNav {
+    .wholeListWrapper .topicsContainer .topicsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    header .headerRightPannel .socialNetworkNav {
         display: none;
     }
     footer .topFooter .innerTopFooter {

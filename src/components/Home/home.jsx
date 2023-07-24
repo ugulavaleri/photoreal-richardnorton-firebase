@@ -1,21 +1,19 @@
-import TopicsPage from "./topics";
-import Footer from "./footer";
-import MainPage from "./mainPage";
 import { UseFetch } from "../../hooks/useFetch";
+import React, { useEffect } from "react";
+import Template from "../Tamplate";
 
 function Home() {
     const { topics, isLoading } = UseFetch();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
-        <div className="container">
-            <MainPage />
-            <TopicsPage
-                topics={topics}
-                isLoading={isLoading}
-                topicsText="Popular topics"
-            />
-            <Footer />
-        </div>
+        <Template
+            topics={topics}
+            isLoading={isLoading}
+            topicsText="Popular Topics"
+        />
     );
 }
 

@@ -10,7 +10,6 @@ export function UseGetUrl(state, dispatch, dispatchType) {
         if (isDataFetched) {
             return;
         }
-
         const upload = async () => {
             if (!state.file) return;
             setLoading(false);

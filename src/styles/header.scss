@@ -11,25 +11,39 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+    ul {
+        list-style: none;
+        display: flex;
 
+        font-size: 15px;
+        gap: 20px;
+        align-items: center;
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+    }
     .headerRightPannel {
         display: flex;
         align-items: center;
         gap: 25px;
-        ul {
-            list-style: none;
-            display: flex;
 
-            font-size: 15px;
-            gap: 20px;
-            align-items: center;
-            a {
-                text-decoration: none;
-                color: #fff;
-            }
-        }
         img {
             width: 20px;
+        }
+    }
+}
+.iconsDiv {
+    ul {
+        list-style: none;
+        display: flex;
+
+        font-size: 15px;
+        gap: 20px;
+        align-items: center;
+        a {
+            text-decoration: none;
+            color: #fff;
         }
     }
 }

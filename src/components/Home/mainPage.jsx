@@ -1,26 +1,38 @@
-import { useEffect } from "react";
-import Header from "./header";
+import { useEffect, useState } from "react";
 import "../../styles/header.scss";
 import "../../styles/mainPage.scss";
-import defaultSliderImage from "../../images/articlesBg.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { UseAddSlider } from "../../hooks/useAddSlider";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase";
+import { S } from "../../reducers/SliderReducer";
 
 function MainPage() {
+    const { state, dispatch } = S();
+
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, ["/"]);
-
-    const { state } = UseAddSlider();
-    console.log(state);
+        const sub = onSnapshot(collection(db, "SliderImages"), (doc) => {
+            let list = [];
+            doc.docs.forEach((d) => {
+                list.push({
+                    id: d.id,
+                    slider: d.data().url,
+                    sliderHeadline: d.data().sliderHeadline,
+                    sliderTitle: d.data().sliderDesc,
+                    time: 12234,
+                });
+            });
+            dispatch({ type: "fillList", payload: list });
+        });
+        return () => sub();
+    }, []);
 
     return (
         <>
-            <Header />
             <div className="mainPageContainer">
                 <Swiper
                     spaceBetween={0}
@@ -30,20 +42,15 @@ function MainPage() {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    {state.list.length === 0 ? (
-                        <img
-                            src={defaultSliderImage}
-                            className="image"
-                            alt="sliderImage"
-                        />
-                    ) : (
-                        state.list.map((img) => (
+                    {state.list.map((img) => {
+                        console.log("fetched list");
+                        return (
                             <SwiperSlide key={img.id}>
                                 <div className="sliderWrapper">
                                     <img
                                         src={img.slider}
                                         className="image"
-                                        alt="currentSliderImage"
+                                        alt="Slider Image"
                                     />
                                     <div className="sliderTextContainer">
                                         <h2>{img.sliderHeadline}</h2>
@@ -54,8 +61,8 @@ function MainPage() {
                                     </div>
                                 </div>
                             </SwiperSlide>
-                        ))
-                    )}
+                        );
+                    })}
                 </Swiper>
             </div>
         </>
