@@ -2,16 +2,28 @@ import { MdTopic } from "react-icons/md";
 import { AiFillFileImage, AiFillHome } from "react-icons/ai";
 import { GoSignOut } from "react-icons/go";
 import "../../styles/admin.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 function Admin() {
     const [activeNavItem, setActiveNavItem] = useState("/admin");
     const navigateHome = useNavigate();
+    const { dispatch } = useContext(AuthContext);
 
-    const handleSignOut = () => {
+    const signout = async () => {
         navigateHome("/");
+        signOut(auth)
+            .then(() => {
+                dispatch({ type: "LOGOUT" });
+            })
+            .catch((error) => {
+                alert("Can't LogOut!");
+                console.log(error);
+            });
     };
     const location = useLocation();
 
@@ -78,7 +90,7 @@ function Admin() {
                         ))}
                     </ul>
                 </nav>
-                <span onClick={handleSignOut} className="signOutSpan">
+                <span onClick={signout} className="signOutSpan">
                     <GoSignOut />
                     Sign out
                 </span>

@@ -11,7 +11,7 @@ const currentDate = `${new Date().getDate()}.${
 
 export const GlobalContextProvider = ({ children }) => {
     const [currentPostId, setCurrentPostId] = useState(null);
-    const { isLoading, wholeList, setWholeList } = UseFetchPosts();
+    const { isLoading, wholeList, setWholeList, filtered } = UseFetchPosts();
 
     return (
         <GlobalContext.Provider
@@ -22,6 +22,7 @@ export const GlobalContextProvider = ({ children }) => {
                 isLoading,
                 wholeList,
                 setWholeList,
+                filtered,
             }}
         >
             {children}

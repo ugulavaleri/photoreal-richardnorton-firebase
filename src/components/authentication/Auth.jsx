@@ -24,7 +24,7 @@ function Register() {
                 const user = userCredential.user;
                 dispatch({ type: "LOGIN", payload: user });
 
-                navigate("/");
+                navigate("/admin");
             })
             .catch((error) => {
                 setError(true);
@@ -37,7 +37,7 @@ function Register() {
                 const user = userCredential.user;
                 dispatch({ type: "LOGIN", payload: user });
 
-                navigate("/");
+                navigate("/admin");
             })
             .catch((error) => {
                 setError(true);

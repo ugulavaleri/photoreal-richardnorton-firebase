@@ -26,7 +26,6 @@ const reducer = (state, action) => {
                 category: action.payload,
             };
         case "setFile":
-            console.log(action.payload);
             return {
                 ...state,
                 successfulyUploaded: false,

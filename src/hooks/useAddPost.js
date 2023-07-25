@@ -14,8 +14,6 @@ export const useAddPost = () => {
 
     const { isLoading } = UseGetUrl(state, dispatch, "setPostImageURL");
 
-    console.log(state.profilePic);
-
     // uploads post
     const HandleSubmit = async () => {
         try {
