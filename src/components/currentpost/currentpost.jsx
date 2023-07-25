@@ -5,8 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { GlobalContext } from "../../context/globalContext";
 import Bg from "../../images/currentPostBg.webp";
 import { db } from "../../firebase";
-import Footer from "../Home/footer";
-import Header from "../Home/header";
+import Header from "../footerAndHeader/header";
+import Footer from "../footerAndHeader/footer";
 
 function Currentpost() {
     const { currentPostId } = useContext(GlobalContext);

@@ -1,5 +1,5 @@
 import "../../styles/footer.scss";
-import { icons } from "../icons";
+import { icons } from "./reusableIcons";
 
 function Footer() {
     return (

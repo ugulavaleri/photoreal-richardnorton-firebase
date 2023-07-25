@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import "../../styles/header.scss";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { icons } from "../icons";
+import { icons } from "./reusableIcons";
 
 function Header() {
     return (

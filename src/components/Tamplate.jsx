@@ -1,8 +1,8 @@
 import "../styles/articles.scss";
 import "../styles/topics.scss";
-import Footer from "./Home/footer";
-import Header from "./Home/header";
-import MainPage from "./Home/mainPage";
+import Footer from "./footerAndHeader/footer";
+import Header from "./footerAndHeader/header";
+import MainPage from "./Home/sliderCopm";
 import TopicsPage from "./Home/topics";
 
 function Template({ topics, isLoading, topicsText }) {
