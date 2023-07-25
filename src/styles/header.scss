@@ -18,6 +18,9 @@ header {
         font-size: 15px;
         gap: 20px;
         align-items: center;
+        li {
+            color: #fff;
+        }
         a {
             text-decoration: none;
             color: #fff;
@@ -45,5 +48,11 @@ header {
             text-decoration: none;
             color: #fff;
         }
+    }
+}
+
+@media (max-width: 800px) {
+    .iconsDiv {
+        display: none;
     }
 }
